@@ -1,3 +1,4 @@
 site_name: Odin-cli
 site_url: https://odin-cli.github.io
 theme: readthedocs
+site_dir: 'site'
