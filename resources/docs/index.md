@@ -1,17 +1,12 @@
-# Welcome to MkDocs
+# Odin-CLI
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Crie serviços utilizando templates locais, templates remotos ou qualquer repositório do github.
 
-## Commands
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Instalação
 
-## Project layout
+Você pode instalar o odin-cli utilizando o seguinte comando de instalação do golang
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+```shell
+go install github.com/odin-cli/odin/cmd/cli/odin@latest
+```

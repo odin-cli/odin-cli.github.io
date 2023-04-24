@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://odin-cli.github.io/config/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Configurações - Odin-cli</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Configura\u00e7\u00f5es";
+        var mkdocs_page_input_path = "config.md";
+        var mkdocs_page_url = "/config/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Odin-cli
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Odin-CLI</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Configurações</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#odinconfigyaml">.odin.config.yaml</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#templates">templates</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#templatesnamerepo">templates.$NAME.repo</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#templatesnamelocal">templates.$NAME.local</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#templatesnameconfig">templates.$NAME.config</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Odin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../odin/create/">Criando serviços</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Odin-cli</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Configurações</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="configuracoes">Configurações</h1>
+<p>Antes de utilizar o odin-cli, você precisa ativar suas configurações padrões. 
+Utilize o comando abaixo para iniciar as configurações</p>
+<pre><code class="language-shell">odin config
+</code></pre>
+<p>Este comando irá criar o arquivo <code>.odin.config.yaml</code> no seu diretório <code>$HOME</code></p>
+<pre><code class="language-yaml"># $HOME/.odin.config.yaml
+templates:
+    default:
+        repo: https://github.com/lbernardo/fx-webserver-example
+        config:
+            apiVersion: &quot;&quot;
+            params:
+                - name: package
+            actions:
+                - action: replace
+                  find: github.com/lbernardo/fx-webserver
+                  replace: '{{ .package }}'
+</code></pre>
+<p>Estas configuraçãos definem as templates que você vai utilizar ao executar o comando de criação de serviços.</p>
+<h2 id="odinconfigyaml">.odin.config.yaml</h2>
+<h3 id="templates">templates</h3>
+<p>Você irá criar um <code>map</code> com os nomes de templates que vai utilizar. </p>
+<blockquote>
+<p><strong>OBS:</strong> Por padrão quando você não especificar um nome na
+hora da criação do serviço, o <code>odin</code> irá interpretar que você esta utilizando o template <code>default</code></p>
+</blockquote>
+<h3 id="templatesnamerepo">templates.$NAME.repo</h3>
+<p>Caso sua template esteja hospedada remotamente através de um repo git, 
+você pode utilizar esse parâmetro para definir o local do template</p>
+<h3 id="templatesnamelocal">templates.$NAME.local</h3>
+<p>Utilize esse parâmetro para definir um template que esteja hospedado localmente.</p>
+<blockquote>
+<p>Você só deve definir se o template é local ou se é repo.</p>
+</blockquote>
+<h3 id="templatesnameconfig">templates.$NAME.config</h3>
+<p>Quando você não tem acesso ao repositório do template, você pode configurar o que vai ser modificado
+ao realizar a criação do seu serviço a partir do template remoto. 
+Por exemplo, existe o repo <code>github.com/lbernardo/fx-webserver-example</code> e você deseja criar seu 
+service a partir dele. Mas precisa substituir o <code>package</code> pelo seu próprio. Então com o <code>templates.$NAME.config</code> você 
+vai definir quais valores você vai querer substituir no conteudo do repo.</p>
+<pre><code class="language-yaml">templates:
+  default:
+    repo: https://github.com/lbernardo/fx-webserver-example
+    config:
+      apiVersion: &quot;&quot;
+      params:
+        - name: package
+      actions:
+        - action: replace
+          find: github.com/lbernardo/fx-webserver
+          replace: '{{ .package }}'
+</code></pre>
+<p>Utilizando a configuração acima, quando você executar o comando <code>odin create &lt;MEU SERVICE&gt;</code> o cli irá pedir para você
+definir um valor para <code>package</code> e então substituir o <code>github.com/lbernardo/fx-webserver</code> pelo valor que esta em <code>package</code></p>
+<blockquote>
+<p>Você pode definir quantos parâmetros desejar, como também quantos <code>action: replace</code> vai querer fazer</p>
+</blockquote>
+<p>Essas configurações (config) podem ser adicionadas dentro do repo, criando um arquivo chamado <code>.odin.yaml</code> na raiz do repo.</p>
+<pre><code class="language-yaml"># .odin.yaml
+config:
+  apiVersion: &quot;&quot;
+  params:
+    - name: package
+  actions:
+    - action: replace
+      find: github.com/lbernardo/fx-webserver
+      replace: '{{ .package }}'
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Odin-CLI"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../odin/create/" class="btn btn-neutral float-right" title="Criando serviços">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../odin/create/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
